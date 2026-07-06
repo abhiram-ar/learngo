@@ -39,9 +39,9 @@ func main() {
 	if argsLen == 0 {
 		fmt.Println("Give me args")
 	} else if argsLen == 1 {
-		fmt.Println("There is one:", os.Args[0])
+		fmt.Println("There is one:", os.Args[1])
 	} else if argsLen == 2 {
-		fmt.Printf("There are two: %s %s \n", os.Args[0], os.Args[1])
+		fmt.Printf("There are two: %s %s \n", os.Args[1], os.Args[2])
 	} else {
 		fmt.Printf("There are %d arguuments", argsLen)
 	}
