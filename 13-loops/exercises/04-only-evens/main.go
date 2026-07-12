@@ -8,6 +8,12 @@
 
 package main
 
+import (
+	"fmt"
+	"os"
+	"strconv"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Only Evens
 //
@@ -28,4 +34,40 @@ package main
 // ---------------------------------------------------------
 
 func main() {
+	if len(os.Args) != 3 {
+		fmt.Println("Give 2 numbers")
+		return
+	}
+
+	min, err := strconv.Atoi(os.Args[1])
+	if err != nil {
+		fmt.Printf("Invalid number %q", os.Args[1])
+		return
+	}
+
+	max, err := strconv.Atoi(os.Args[2])
+	if err != nil {
+		fmt.Printf("Invalid number %q", os.Args[2])
+		return
+	}
+
+	if min > max {
+		fmt.Println("first argument is less than second")
+		return
+	}
+
+	var sum int
+	for i := min; i <= max; i++ {
+		if i%2 == 1 {
+			continue
+		}
+
+		sum += i
+
+		fmt.Print(i)
+		if i < max {
+			fmt.Print(" + ")
+		}
+	}
+	fmt.Printf(" = %d\n", sum)
 }
