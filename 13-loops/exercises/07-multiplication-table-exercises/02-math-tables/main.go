@@ -118,7 +118,7 @@ func main() {
 	}
 
 	op := os.Args[1]
-	if strings.IndexAny("+-=/*%", op) == -1 {
+	if strings.ContainsAny("+-=/*%", op) {
 		fmt.Println("Invalid op")
 		fmt.Println("Usage: [op=*/+-] [size]")
 		return
