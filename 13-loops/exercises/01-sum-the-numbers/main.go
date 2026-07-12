@@ -8,6 +8,8 @@
 
 package main
 
+import "fmt"
+
 // ---------------------------------------------------------
 // EXERCISE: Sum the Numbers
 //
@@ -19,4 +21,16 @@ package main
 // ---------------------------------------------------------
 
 func main() {
+	sum := 0
+	for i := 1; i <= 10; i++ {
+		sum += i
+	}
+	fmt.Println("Sum is ", sum)
+
+	sum2 := 0
+	for i := range 10 {
+		sum2 += i
+	}
+	fmt.Println("Sum is ", sum2) // wrong output since, rage will be fron 0-9
+
 }
