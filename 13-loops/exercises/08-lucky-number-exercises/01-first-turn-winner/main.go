@@ -8,6 +8,13 @@
 
 package main
 
+import (
+	"fmt"
+	"math/rand"
+	"os"
+	"strconv"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: First Turn Winner
 //
@@ -26,4 +33,37 @@ package main
 // ---------------------------------------------------------
 
 func main() {
+	if len(os.Args) != 2 {
+		fmt.Println("No input, give me a number between 0 and 9")
+		return
+	}
+
+	userGuess, err := strconv.Atoi(os.Args[1])
+	if err != nil {
+		fmt.Printf("Invalid number %q", os.Args[1])
+		return
+	}
+
+	if userGuess < 0 || userGuess > 9 {
+		fmt.Println("Guess should be between 0 and 9")
+		return
+	}
+
+	for turn := 0; turn < 5; turn++ {
+		rand := rand.Intn(10)
+		fmt.Println("rand", rand)
+		if rand != userGuess {
+			continue
+		}
+
+		if turn == 0 {
+			fmt.Println("You won on firrt turn")
+		} else {
+			fmt.Println("You won")
+		}
+		return
+	}
+
+	fmt.Println("you loose")
+
 }

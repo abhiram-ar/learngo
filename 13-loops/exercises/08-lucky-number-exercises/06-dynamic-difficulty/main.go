@@ -8,6 +8,13 @@
 
 package main
 
+import (
+	"fmt"
+	"math/rand"
+	"os"
+	"strconv"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Dynamic Difficulty
 //
@@ -49,4 +56,58 @@ package main
 // ---------------------------------------------------------
 
 func main() {
+	args := os.Args[1:]
+	maxTurns := 5
+
+	if len(args) == 0 {
+		fmt.Println("No input, give me a number between 0 and 9, -v for verbose mode")
+		return
+	}
+
+	verbose := false
+	if args[0] == "-v" {
+		verbose = true
+	}
+
+	userGuess, err := strconv.Atoi(args[len(args)-1])
+	if err != nil {
+		fmt.Printf("Invalid number %q", args[len(args)-1])
+		return
+	}
+
+	if userGuess < 0 {
+		fmt.Println("Guess should be zero or more")
+		return
+	}
+
+	randUpperlimit := 10
+	if userGuess > 10 {
+		randUpperlimit = userGuess
+	}
+
+	if userGuess > 15 {
+		maxTurns = userGuess / 3
+	}
+
+	for turn := 0; turn < maxTurns; turn++ {
+
+		rand := rand.Intn(randUpperlimit + 1)
+
+		if verbose {
+			fmt.Printf("turn %d :: randomGen %d \n", turn+1, rand)
+		}
+
+		if rand != userGuess {
+			continue
+		}
+
+		if turn == 0 {
+			fmt.Println("You won on firrt turn")
+		} else {
+			fmt.Println("You won")
+		}
+		return
+	}
+
+	fmt.Println("you loose")
 }
