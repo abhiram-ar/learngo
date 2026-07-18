@@ -8,6 +8,13 @@
 
 package main
 
+import (
+	"fmt"
+	"os"
+	"path/filepath"
+	"strings"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Path Searcher
 //
@@ -80,4 +87,15 @@ package main
 // ---------------------------------------------------------
 
 func main() {
+	fileList := filepath.SplitList(os.Getenv("PATH"))
+	fmt.Println(fileList)
+
+	for _, q := range os.Args[1:] {
+		for _, w := range fileList {
+			q, w := strings.ToLower(q), strings.ToLower(w)
+			if strings.Contains(w, q) {
+				fmt.Printf("%q in %q\n", q, w)
+			}
+		}
+	}
 }
