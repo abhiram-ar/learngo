@@ -12,7 +12,6 @@ import (
 	"fmt"
 	"math/rand"
 	"os"
-	"time"
 )
 
 // ---------------------------------------------------------
@@ -58,22 +57,37 @@ import (
 //     Socrates feels terrible 😩
 // ---------------------------------------------------------
 
+var (
+	positive = "positive"
+	negative = "negative"
+)
+
 func main() {
 	args := os.Args[1:]
-	if len(args) != 1 {
-		fmt.Println("[your name]")
+	if len(args) != 2 {
+		fmt.Println("[your name] [positive|negative]")
 		return
 	}
 
 	name := args[0]
-
-	moods := [...]string{
-		"happy 😀", "good 👍", "awesome 😎",
-		"sad 😞", "bad 👎", "terrible 😩",
+	tone := args[1]
+	if !(tone == positive || tone == negative) {
+		fmt.Println("supported tones [positive|negative]")
+		return
 	}
 
-	rand.Seed(time.Now().UnixNano())
-	n := rand.Intn(len(moods))
+	moods := [...][3]string{
+		{"happy 😀", "good 👍", "awesome 😎"},
+		{"sad 😞", "bad 👎", "terrible 😩"},
+	}
 
-	fmt.Printf("%s feels %s\n", name, moods[n])
+	n := rand.Intn(len(moods[1]))
+	toneType := 0
+	if tone == positive {
+		toneType = 0
+	} else {
+		toneType = 1
+	}
+
+	fmt.Printf("%s feels %s\n", name, moods[toneType][n])
 }
