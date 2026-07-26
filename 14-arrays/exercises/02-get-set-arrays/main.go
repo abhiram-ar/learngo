@@ -8,6 +8,8 @@
 
 package main
 
+import "fmt"
+
 // ---------------------------------------------------------
 // EXERCISE: Get and Set Array Elements
 //
@@ -123,4 +125,43 @@ package main
 // ---------------------------------------------------------
 
 func main() {
+	var (
+		names     [3]string // The names of your three best friends
+		distances [5]int    // The distances to five different locations
+		data      [5]byte   // A data buffer with five bytes of capacity
+		zero      [0]byte   // A byte array that doesn't occupy memory space
+	)
+
+	names[0] = "suku"
+	names[1] = "cee"
+	names[2] = "aswim"
+
+	for i := 0; i < len(names); i++ {
+		fmt.Printf("names[%d] = %q\n", i, names[i])
+	}
+
+	distances[0] = 11
+	distances[1] = 22
+	distances[2] = 33
+	// distances[3] = 44
+	distances[4] = 55
+
+	for i := 0; i < len(distances); i++ {
+		fmt.Printf("distances[%d] = %d\n", i, distances[i])
+	}
+
+	data[0] = 'A'
+	data[1] = 'B'
+	data[2] = 'C'
+	data[3] = 'D'
+	data[4] = 'E'
+	for i := 0; i < len(data); i++ {
+		fmt.Printf("data[%d] = %d\n", i, data[i])
+	}
+
+	// zero[0] = 1
+	for i := 0; i < len(zero); i++ {
+		fmt.Printf("data[%d] = %d\n", i, data[i])
+	}
+
 }
