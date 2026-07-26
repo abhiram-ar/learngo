@@ -8,6 +8,8 @@
 
 package main
 
+import "fmt"
+
 // ---------------------------------------------------------
 // EXERCISE: Refactor to Array Literals
 //
@@ -25,4 +27,25 @@ package main
 // ---------------------------------------------------------
 
 func main() {
+
+	names := [3]string{"suku", "cee", "aswim"}
+
+	for i := 0; i < len(names); i++ {
+		fmt.Printf("names[%d] = %q\n", i, names[i])
+	}
+
+	distances := [5]int{11, 22, 3: 44, 55}
+	for i := 0; i < len(distances); i++ {
+		fmt.Printf("distances[%d] = %d\n", i, distances[i])
+	}
+
+	data := [5]byte{'A', 'B', 'C', 'D', 'E'}
+	for i := 0; i < len(data); i++ {
+		fmt.Printf("data[%d] = %d\n", i, data[i])
+	}
+
+	zero := [0]byte{}
+	for i := 0; i < len(zero); i++ {
+		fmt.Printf("data[%d] = %d\n", i, data[i])
+	}
 }
