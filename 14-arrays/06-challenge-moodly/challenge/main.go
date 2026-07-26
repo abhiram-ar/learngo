@@ -8,6 +8,12 @@
 
 package main
 
+import (
+	"fmt"
+	"math/rand"
+	"os"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Moodly
 //
@@ -45,5 +51,22 @@ package main
 //     Socrates feels terrible 😩
 // ---------------------------------------------------------
 
+var mood = [...]string{
+	"happy",
+	"good",
+	"awesome",
+	"sad",
+	"terrible",
+	"lost",
+}
+
 func main() {
+
+	if len(os.Args) != 2 {
+		fmt.Println("What is your name")
+		return
+	}
+
+	fmt.Printf("%s feels %s", os.Args[1], mood[rand.Intn(len(mood))])
+
 }
