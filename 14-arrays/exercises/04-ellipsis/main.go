@@ -8,6 +8,8 @@
 
 package main
 
+import "fmt"
+
 // ---------------------------------------------------------
 // EXERCISE: Refactor to Ellipsis
 //
@@ -23,4 +25,24 @@ package main
 // ---------------------------------------------------------
 
 func main() {
+	names := [...]string{"suku", "cee", "aswim"}
+
+	for i := 0; i < len(names); i++ {
+		fmt.Printf("names[%d] = %q\n", i, names[i])
+	}
+
+	distances := [...]int{11, 22, 3: 44, 55}
+	for i := 0; i < len(distances); i++ {
+		fmt.Printf("distances[%d] = %d\n", i, distances[i])
+	}
+
+	data := [...]byte{'A', 'B', 'C', 'D', 'E'}
+	for i := 0; i < len(data); i++ {
+		fmt.Printf("data[%d] = %d\n", i, data[i])
+	}
+
+	zero := [...]byte{}
+	for i := 0; i < len(zero); i++ {
+		fmt.Printf("data[%d] = %d\n", i, data[i])
+	}
 }
