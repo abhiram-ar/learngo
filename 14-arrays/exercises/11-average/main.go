@@ -47,7 +47,7 @@ import (
 
 func main() {
 	args := os.Args[1:]
-	if len(args) != 5 {
+	if len(args) == 0 || len(args) > 5 {
 		fmt.Println("Please give me numbers (maximum 5 numbers).")
 		return
 	}
