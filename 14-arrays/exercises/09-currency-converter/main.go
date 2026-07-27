@@ -8,42 +8,77 @@
 
 package main
 
+import (
+	"fmt"
+	"os"
+	"strconv"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Currency Converter
 //
-//   In this exercise, you're going to display currency exchange ratios
-//   against USD.
+//	In this exercise, you're going to display currency exchange ratios
+//	against USD.
 //
-//   1. Declare a few constants with iota. They're going to be the keys
-//      of the array.
+//	1. Declare a few constants with iota. They're going to be the keys
+//	   of the array.
 //
-//   2. Create an array that contains the conversion ratios.
+//	2. Create an array that contains the conversion ratios.
 //
-//      You should use keyed elements and the contants you've declared before.
+//	   You should use keyed elements and the contants you've declared before.
 //
-//   3. Get the USD amount to be converted from the command line.
+//	3. Get the USD amount to be converted from the command line.
 //
-//   4. Handle the error cases for missing or invalid input.
+//	4. Handle the error cases for missing or invalid input.
 //
-//   5. Print the exchange ratios.
+//	5. Print the exchange ratios.
 //
 // EXPECTED OUTPUT
-//   go run main.go
-//     Please provide the amount to be converted.
 //
-//   go run main.go invalid
-//     Invalid amount. It should be a number.
+//	go run main.go
+//	  Please provide the amount to be converted.
 //
-//   go run main.go 10.5
-//     10.50 USD is 9.24 EUR
-//     10.50 USD is 8.19 GBP
-//     10.50 USD is 1186.71 JPY
+//	go run main.go invalid
+//	  Invalid amount. It should be a number.
 //
-//   go run main.go 1
-//     1.00 USD is 0.88 EUR
-//     1.00 USD is 0.78 GBP
-//     1.00 USD is 113.02 JPY
+//	go run main.go 10.5
+//	  10.50 USD is 9.24 EUR
+//	  10.50 USD is 8.19 GBP
+//	  10.50 USD is 1186.71 JPY
+//
+//	go run main.go 1
+//	  1.00 USD is 0.88 EUR
+//	  1.00 USD is 0.78 GBP
+//	  1.00 USD is 113.02 JPY
+//
 // ---------------------------------------------------------
+const (
+	EUR = iota
+	GBP
+	JPY
+)
+
+var exchangeRate = [...]float64{
+	EUR: 0.88,
+	GBP: 0.78,
+	JPY: 113.02,
+}
 
 func main() {
+	args := os.Args[1:]
+	if len(args) != 1 {
+		fmt.Println("input [USD]")
+		return
+	}
+
+	USD_AMOUNT, err := strconv.ParseFloat(args[0], 32)
+	if err != nil {
+		fmt.Printf("Invalid USD - %q", args[0])
+		return
+	}
+
+	fmt.Printf("%.2f USD is %.2f EUR\n", USD_AMOUNT, USD_AMOUNT*(exchangeRate[EUR]))
+	fmt.Printf("%.2f USD is %.2f GPB\n", USD_AMOUNT, USD_AMOUNT*(exchangeRate[GBP]))
+	fmt.Printf("%.2f USD is %.2f JPY\n", USD_AMOUNT, USD_AMOUNT*(exchangeRate[JPY]))
+
 }
