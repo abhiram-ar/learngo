@@ -106,23 +106,35 @@ func main() {
 		"   ",
 	}
 
+	blank := placeholder{
+		"   ",
+		"   ",
+		"   ",
+		"   ",
+		"   ",
+	}
+
 	digits := [...]placeholder{
 		zero, one, two, three, four, five, six, seven, eight, nine,
 	}
 
 	screen.Clear()
-
 	for {
 		screen.MoveTopLeft()
 
 		now := time.Now()
 		hour, min, sec := now.Hour(), now.Minute(), now.Second()
 
+		seperator := colon
+		if sec%2 == 0 {
+			seperator = blank
+		}
+
 		clock := [...]placeholder{
 			digits[hour/10], digits[hour%10],
-			colon,
+			seperator,
 			digits[min/10], digits[min%10],
-			colon,
+			seperator,
 			digits[sec/10], digits[sec%10],
 		}
 

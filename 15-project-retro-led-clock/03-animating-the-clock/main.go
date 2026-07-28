@@ -110,8 +110,8 @@ func main() {
 		zero, one, two, three, four, five, six, seven, eight, nine,
 	}
 
+	screen.Clear()
 	for {
-		screen.Clear()
 		screen.MoveTopLeft()
 
 		now := time.Now()
