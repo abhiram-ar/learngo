@@ -8,5 +8,102 @@
 
 package main
 
+import "fmt"
+
+var (
+	digitchar     = "█"
+	separatorChar = "░"
+)
+
+type Digit [5]string
+
+var zero = Digit{
+	"███",
+	"█ █",
+	"█ █",
+	"█ █",
+	"███",
+}
+
+var one = Digit{
+	"██ ",
+	" █ ",
+	" █ ",
+	" █ ",
+	"███",
+}
+
+var two = Digit{
+	"███",
+	"  █",
+	"███",
+	"█  ",
+	"███",
+}
+
+var three = Digit{
+	"███",
+	"  █",
+	"███",
+	"  █",
+	"███",
+}
+
+var four = Digit{
+	"█ █",
+	"█ █",
+	"███",
+	"  █",
+	"  █",
+}
+
+var five = Digit{
+	"███",
+	"█  ",
+	"███",
+	"  █",
+	"███",
+}
+
+var six = Digit{
+	"███",
+	"█  ",
+	"███",
+	"█ █",
+	"███",
+}
+
+var seven = Digit{
+	"███",
+	"  █",
+	"  █",
+	"  █",
+	"  █",
+}
+
+var eight = Digit{
+	"███",
+	"█ █",
+	"███",
+	"█ █",
+	"███",
+}
+
+var nine = Digit{
+	"███",
+	"█ █",
+	"███",
+	"  █",
+	"███",
+}
+
+var digits = [...]Digit{zero, one, two, three, four, five, six, seven, eight, nine}
+
 func main() {
+	for line := range digits[0] {
+		for j := range digits {
+			fmt.Printf("%s ", digits[j][line])
+		}
+		fmt.Println("")
+	}
 }

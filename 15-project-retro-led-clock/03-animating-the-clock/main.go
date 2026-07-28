@@ -11,6 +11,8 @@ package main
 import (
 	"fmt"
 	"time"
+
+	"github.com/inancgumus/screen"
 )
 
 func main() {
@@ -108,25 +110,32 @@ func main() {
 		zero, one, two, three, four, five, six, seven, eight, nine,
 	}
 
-	now := time.Now()
-	hour, min, sec := now.Hour(), now.Minute(), now.Second()
+	for {
+		screen.Clear()
+		screen.MoveTopLeft()
 
-	fmt.Printf("hour: %d, min: %d, sec: %d\n", hour, min, sec)
+		now := time.Now()
+		hour, min, sec := now.Hour(), now.Minute(), now.Second()
 
-	// [8][5]string
-	clock := [...]placeholder{
-		// extract the digits: 17 becomes, 1 and 7 respectively
-		digits[hour/10], digits[hour%10],
-		colon,
-		digits[min/10], digits[min%10],
-		colon,
-		digits[sec/10], digits[sec%10],
-	}
+		fmt.Printf("hour: %d, min: %d, sec: %d\n\n", hour, min, sec)
 
-	for line := range clock[0] {
-		for digit := range clock {
-			fmt.Print(clock[digit][line], "  ")
+		// [8][5]string
+		clock := [...]placeholder{
+			// extract the digits: 17 becomes, 1 and 7 respectively
+			digits[hour/10], digits[hour%10],
+			colon,
+			digits[min/10], digits[min%10],
+			colon,
+			digits[sec/10], digits[sec%10],
 		}
-		fmt.Println()
+
+		for line := range clock[0] {
+			for digit := range clock {
+				fmt.Print(clock[digit][line], "  ")
+			}
+			fmt.Println()
+		}
+
+		time.Sleep(time.Second)
 	}
 }
