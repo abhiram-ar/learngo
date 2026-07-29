@@ -84,7 +84,10 @@ import (
 func main() {
 	screen.Clear()
 
+	s := 0
+	fill := 0
 	for {
+		screen.Clear()
 		screen.MoveTopLeft()
 
 		now := time.Now()
@@ -98,8 +101,22 @@ func main() {
 			digits[sec/10], digits[sec%10],
 		}
 
+		if s%8 == 0 {
+			s = 0
+			fill = 7
+
+		}
+		fmt.Println("s::", s)
+
+		for line := range blank {
+			for range fill {
+				fmt.Print(blank[line])
+			}
+			fmt.Println()
+		}
+
 		for line := range clock[0] {
-			for index, digit := range clock {
+			for index, digit := range clock[s:] {
 				next := clock[index][line]
 				if digit == colon && sec%2 == 0 {
 					next = "   "
@@ -108,6 +125,8 @@ func main() {
 			}
 			fmt.Println()
 		}
+
+		s++
 
 		time.Sleep(time.Second)
 	}
