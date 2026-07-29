@@ -71,10 +71,16 @@ func main() {
 			digits[sec/10], digits[sec%10],
 		}
 
-		for line := range clock[0] {
-			for index, digit := range clock {
+		toPrint := clock
+
+		if sec%10 == 0 {
+			toPrint = alarm
+		}
+
+		for line := range toPrint[0] {
+			for index, digit := range toPrint {
 				// colon blink
-				next := clock[index][line]
+				next := toPrint[index][line]
 				if digit == colon && sec%2 == 0 {
 					next = "   "
 				}
