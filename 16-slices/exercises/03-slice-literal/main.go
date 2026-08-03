@@ -8,7 +8,9 @@
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 // ---------------------------------------------------------
 // EXERCISE: Assign slice literals
@@ -50,15 +52,21 @@ func main() {
 		alives    []bool    // Up/Down status of web servers
 	)
 
-	names = []string{}
-	distances = []int{}
-	data = []byte{}
-	ratios = []float64{}
-	alives = []bool{}
+	names = []string{"suku", "cee", "aswin"}
+	distances = []int{19, 29, 39, 49, 59}
+	data = []byte{1, 2, 3, 4, 5}
+	ratios = []float64{1.24, 4.24}
+	alives = []bool{true, false, true, true}
 
 	fmt.Printf("names    : %T %d %t\n", names, len(names), names == nil)
 	fmt.Printf("distances: %T %d %t\n", distances, len(distances), distances == nil)
 	fmt.Printf("data     : %T %d %t\n", data, len(data), data == nil)
 	fmt.Printf("ratios   : %T %d %t\n", ratios, len(ratios), ratios == nil)
 	fmt.Printf("alives   : %T %d %t\n", alives, len(alives), alives == nil)
+
+	same := "same"
+	if len(distances) != len(data) {
+		same += "not "
+	}
+	fmt.Println("The length of the distance and the data slice are the", same)
 }
