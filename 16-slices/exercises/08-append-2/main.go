@@ -8,6 +8,11 @@
 
 package main
 
+import (
+	"fmt"
+	"time"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Append #2
 //
@@ -46,4 +51,27 @@ package main
 // ---------------------------------------------------------
 
 func main() {
+	var (
+		pizza       []string
+		graduations []int
+		departures  []time.Time
+		lights      []bool
+	)
+
+	pizza = append(pizza, "pepperoni", "onions", "extra", "cheese")
+	graduations = append(graduations, 1998, 2005, 2018)
+
+	now := time.Now()
+	departures = append(departures,
+		now.Add(24*time.Hour),
+		now.Add(20*time.Minute),
+		now.Add(10*time.Hour),
+	)
+
+	lights = append(lights, true, false, true)
+
+	fmt.Println(pizza)
+	fmt.Println(graduations)
+	fmt.Println(departures)
+	fmt.Println(lights)
 }
