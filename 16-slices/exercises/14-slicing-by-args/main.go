@@ -8,6 +8,12 @@
 
 package main
 
+import (
+	"fmt"
+	"os"
+	"strconv"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Slicing by arguments
 //
@@ -111,7 +117,44 @@ package main
 //
 // ---------------------------------------------------------
 
+var template = "Provide only the [starting] and [stopping] positions"
+
 func main() {
 	// uncomment the slice below
-	// ships := []string{"Normandy", "Verrikan", "Nexus", "Warsaw"}
+	ships := []string{"Normandy", "Verrikan", "Nexus", "Warsaw"}
+	l := len(ships)
+
+	args := os.Args[1:]
+	if len(args) < 1 {
+		fmt.Println(template)
+		fmt.Println("Need atleast arguments")
+		return
+	}
+
+	start, err1 := strconv.Atoi(args[0])
+	if err1 != nil {
+		fmt.Println("invaid postion values")
+		return
+	}
+
+	var end int = l
+	if len(args) == 2 {
+		endCli, err2 := strconv.Atoi(args[1])
+		if err2 != nil {
+			fmt.Println("Invaid position values")
+			return
+		}
+		end = endCli
+
+	}
+
+	if start < 0 || start > l || end < 1 || end > l {
+		fmt.Println("Wrong positions")
+		return
+	} else if end < start {
+		fmt.Println("start cannot be less than end")
+		return
+	}
+
+	fmt.Println("result:", ships[start:end])
 }

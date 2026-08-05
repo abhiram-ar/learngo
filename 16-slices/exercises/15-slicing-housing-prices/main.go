@@ -8,6 +8,12 @@
 
 package main
 
+import (
+	"fmt"
+	"os"
+	"strings"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Slicing the Housing Prices
 //
@@ -133,4 +139,43 @@ Istanbul,500,10,5,1000000`
 
 		separator = ","
 	)
+
+	row := strings.Split(data, "\n")
+	header := strings.Split(row[0], separator)
+
+	args := os.Args[1:]
+	start, end := 0, len(header)
+
+	for colIdx, val := range header {
+
+		if len(args) >= 1 && val == args[0] {
+			start = colIdx
+		}
+
+		if len(args) == 2 && val == args[1] {
+			end = colIdx + 1
+		}
+	}
+	fmt.Println("start, end", start, end)
+
+	for _, header := range strings.Split(row[0], ",")[start:end] {
+		fmt.Printf("%-15s", header)
+	}
+	fmt.Printf("\n")
+	fmt.Println(strings.Repeat("=", 75))
+
+	for _, row := range strings.Split(data, "\n")[1:] {
+		rowData := strings.Split(row, separator)
+
+		for idx, val := range rowData[start:end] {
+			if start == 0 && idx == 0 {
+				fmt.Printf("%-15s", val)
+				continue
+			}
+
+			fmt.Printf("%-15s", val)
+		}
+		fmt.Println()
+
+	}
 }
