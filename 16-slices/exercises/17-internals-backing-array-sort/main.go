@@ -10,6 +10,7 @@ package main
 
 import (
 	"fmt"
+	"sort"
 )
 
 // ---------------------------------------------------------
@@ -49,6 +50,7 @@ func main() {
 
 	fmt.Println("Original:", items)
 	// ADD YOUR CODE HERE
+	sort.Strings(items[(len(items)/2)-1 : (len(items)/2)+1])
 	fmt.Println()
 	fmt.Println("Sorted  :", items)
 }
