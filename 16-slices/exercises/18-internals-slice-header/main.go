@@ -12,6 +12,7 @@ import (
 	"fmt"
 	"runtime"
 	"runtime/debug"
+	"unsafe"
 )
 
 // ---------------------------------------------------------
@@ -86,28 +87,43 @@ func main() {
 	// 1. allocate an array with 10 million int elements
 	//    the array's size will be equal to ~80MB
 	//    hint: use the `size` constant above.
+	arr := [size]int{}
 
 	// 2. print the memory usage (use the report func).
+	report("after declaring an array")
 
 	// 3. copy the array to a new array.
+	newArr := arr
 
 	// 4. print the memory usage
+	report("after copying the array")
 
 	// 5. pass the array to the passArray function
+	passArray(arr)
 
 	// 6. convert one of the arrays to a slice
+	slice := arr[:]
 
 	// 7. slice only the first 1000 elements of the array
+	slice2 := arr[1e3:]
 
 	// 8. slice only the elements of the array between 1000 and 10000
+	slice3 := arr[1e3:1e4]
 
 	// 9. print the memory usage (report func)
+	report("after slicings")
 
 	// 10. pass the one of the slices to the passSlice function
+	passSlice(slice)
 
 	// 11. print the sizes of the arrays and slices
 	//     hint: use the unsafe.Sizeof function
 	//     see more here: https://golang.org/pkg/unsafe/#Sizeof
+	fmt.Println("arr 1 size    :", unsafe.Sizeof(arr))
+	fmt.Println("arr 2 size    :", unsafe.Sizeof(newArr))
+	fmt.Println("slice 1 size  :", unsafe.Sizeof(slice))
+	fmt.Println("slice 2 size  :", unsafe.Sizeof(slice2))
+	fmt.Println("slice 3 size  :", unsafe.Sizeof(slice3))
 }
 
 // passes [size]int array — about 80MB!
