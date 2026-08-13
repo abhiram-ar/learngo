@@ -122,8 +122,8 @@ func main() {
 	fmt.Println()
 
 	// --- #7 ---
-	// try to slice the games slice beyond its capacity
-	games = games[:3]
-	fmt.Printf("games ::%q\n", games)
+	// try to slice the games slice beyond its capacity - error, I belive the backing array of games remain the same
+	// games = games[:5]
+	// fmt.Printf("games ::%q\n", games)
 
 }
