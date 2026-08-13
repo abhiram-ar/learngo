@@ -8,6 +8,11 @@
 
 package main
 
+import (
+	"fmt"
+	"time"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Observe the capacity growth
 //
@@ -39,4 +44,16 @@ package main
 //
 // ---------------------------------------------------------
 
-func main() {}
+func main() {
+	var slice []int
+	var prevCap int
+	for i := 0; i < 1e7; i++ {
+		if cap(slice) != prevCap {
+			fmt.Printf("len:%-10d cap:%-10d growth:%-10.2f\n", len(slice), cap(slice), (float64(cap(slice)) / float64(prevCap)))
+			time.Sleep(1 * time.Second)
+		}
+
+		prevCap = cap(slice)
+		slice = append(slice, i)
+	}
+}
