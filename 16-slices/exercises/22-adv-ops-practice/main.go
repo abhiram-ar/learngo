@@ -29,9 +29,9 @@ func main() {
 	// #1: Create a string slice: `names` with a length and
 	//     capacity of 5, and print it.
 	//
-	//
+	names := make([]string, 5)
 	// ...
-	// s.Show("1st step", names)
+	s.Show("1st step", names)
 
 	// ########################################################
 	//
@@ -43,9 +43,8 @@ func main() {
 	//
 	//     Observe how the slice and its backing array change.
 	//
-	//
-	// ...
-	// s.Show("2nd step", names)
+	names = append(names, "einstein", "tesla", "aristotle")
+	s.Show("2nd step", names)
 
 	// ########################################################
 	//
@@ -63,9 +62,9 @@ func main() {
 	//     Expected output:
 	//     ["einstein", "tesla", "aristotle" "" ""]
 	//
-	//
-	// ...
-	// s.Show("3rd step", names)
+	names = make([]string, 0, 5)
+	names = append(names, "einstein", "tesla", "aristotle")
+	s.Show("3rd step", names)
 
 	// ########################################################
 	//
@@ -79,12 +78,9 @@ func main() {
 	//
 	//
 	// Array (uncomment):
-	// moreNames := [...]string{"plato", "khayyam", "ptolemy"}
-	//
-	// ...
-	//
-	// s.Show("4th step", names)
-
+	moreNames := [...]string{"plato", "khayyam", "ptolemy"}
+	names = append(names, moreNames[:2]...)
+	s.Show("4th step", names)
 	// ########################################################
 	//
 	// #5:  Only copy the last 3 elements of the `names` slice
@@ -98,12 +94,11 @@ func main() {
 	//
 	//     Print the clone slice before and after the append.
 	//
-	//
-	// ...
-	// s.Show("5th step (before append)", clone)
-	//
-	// ...
-	// s.Show("5th step (after append)", clone)
+	clone := make([]string, 5)
+	copy(clone, names[len(names)-3:])
+	s.Show("5th step (before append)", clone)
+	clone = append(clone[:3], names[:2]...)
+	s.Show("5th step (after append)", clone)
 
 	// ########################################################
 	//
@@ -123,16 +118,18 @@ func main() {
 	//     Print the `clone` and `sliced` slices.
 	//
 	//
-	// ...
-	// s.Show("6th step", clone, sliced)
+	sliced := clone[1:4:4]
+	s.Show("6 before append", sliced)
+	sliced = append(sliced, "hypatia")
+	s.Show("6 after append", sliced)
+	clone[2] = "elder"
+	s.Show("6th step", clone, sliced)
 }
 
-//
 // Don't mind about this function.
 //
 // For printing the slices: You can either use the
 // prettyslice package or `fmt.Printf`.
-//
 func init() {
 	s.PrintBacking = true // prints the backing array
 	s.MaxPerLine = 10     // prints 10 slice elements per line
