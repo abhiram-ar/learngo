@@ -31,6 +31,7 @@ func main() {
 	// only with 10 elements.
 	last10 := make([]int, 10)
 	copy(last10, millions[len(millions)-10:])
+	millions = last10
 
 	// Make the millions slice lose reference to its backing array
 	// so that its backing array can be cleaned up from memory.
