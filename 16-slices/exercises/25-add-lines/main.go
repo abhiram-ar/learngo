@@ -73,12 +73,20 @@ func main() {
 	// You need to add a newline after each sentence in another slice.
 	// Don't touch the following code.
 	lyric := strings.Fields(`yesterday all my troubles seemed so far away now it looks as though they are here to stay oh I believe in yesterday`)
-
 	// ===================================
 	//
 	// ~~~ CHANGE THIS CODE ~~~
 	//
-	fix := lyric
+	fix := make([]string, len(lyric)+3)
+	newline := []string{"\n"}
+
+	copy(fix, lyric[:8])
+	copy(fix[8:], newline)
+	copy(fix[9:], lyric[8:18])
+	copy(fix[9+(18-8):], newline)
+	copy(fix[9+(18-8)+1:], lyric[18:])
+	copy(fix[len(fix)-1:], newline)
+
 	//
 	// ===================================
 
