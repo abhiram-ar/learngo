@@ -1,0 +1,26 @@
+/home/abhiram-ar/personal/go-exercises/learngo/17-project-empty-file-finder
+	01-fetch-the-files/
+	02-write-to-a-file/
+	03-optimize/
+	exercises/
+
+/home/abhiram-ar/personal/go-exercises/learngo/16-slices
+	01-slices-vs-arrays/
+	02-slices-vs-arrays/
+	03-slices-vs-arrays-examples/
+	04-slices-vs-arrays-unique-nums/
+	05-append/
+	06-slice-expressions/
+	07-slice-expressions-pagination/
+	08-slice-internals-1-backing-array/
+	09-slice-internals-2-slice-header/
+	10-slice-internals-3-len-cap/
+	11-slice-internals-4-append/
+	12-full-slice-expressions/
+	13-make/
+	14-copy/
+	15-multi-dimensional-slices/
+	exercises/
+	questions/
+	temp/
+
