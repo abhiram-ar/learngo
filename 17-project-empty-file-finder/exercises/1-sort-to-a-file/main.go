@@ -58,16 +58,16 @@ func main() {
 	slices.Sort(args)
 
 	var data []byte
-	fmt.Printf("%#v\n", data)
+	fmt.Printf("%#v", data)
 	for idx := range len(args) {
 		data = append(data, args[idx]...)
 		data = append(data, "\n"...)
 
 	}
 
-	err := os.WriteFile("sorted.txt", data, 0111)
+	err := os.WriteFile("sorted.txt", data, 0644)
 	if err != nil {
-		fmt.Println("error writing to file::", err)
+		fmt.Println("error writing to file", err)
 		return
 	}
 	fmt.Println("Witten to file")
