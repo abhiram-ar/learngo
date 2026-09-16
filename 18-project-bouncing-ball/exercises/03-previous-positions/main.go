@@ -51,7 +51,7 @@ func main() {
 	)
 
 	var (
-		px, py int    // ball position
+		px, py int    // ball positioSn
 		vx, vy = 1, 1 // velocities
 
 		cell rune // current cell (for caching)
