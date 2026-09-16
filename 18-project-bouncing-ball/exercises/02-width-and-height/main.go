@@ -70,10 +70,13 @@ import (
 // ---------------------------------------------------------
 
 func main() {
-	const (
-		width  = 50
-		height = 10
+	screenX, screenY := screen.Size()
+	var (
+		width, height = screenX / 2, screenY
+		bufLen        = (width*2 + 1) * height
+	)
 
+	const (
 		cellEmpty = ' '
 		cellBall  = '⚾'
 
@@ -84,7 +87,6 @@ func main() {
 		//
 		// *2 for extra spaces
 		// +1 for newlines
-		bufLen = (width*2 + 1) * height
 	)
 
 	var (

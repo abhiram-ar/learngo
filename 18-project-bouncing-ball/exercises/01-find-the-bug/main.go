@@ -49,6 +49,8 @@ func main() {
 		cellEmpty = ' '
 		cellBall  = '⚾'
 
+		bufSize = (width*2 + 1) * height
+
 		maxFrames = 1200
 		speed     = time.Second / 20
 	)
@@ -67,7 +69,7 @@ func main() {
 	}
 
 	// create a drawing buffer
-	buf := make([]rune, 0, width*height)
+	buf := make([]rune, 0, bufSize)
 
 	// clear the screen once
 	screen.Clear()
@@ -112,6 +114,7 @@ func main() {
 
 		// print the buffer
 		screen.MoveTopLeft()
+		fmt.Println(width*height, len(buf), cap(buf))
 		fmt.Print(string(buf))
 
 		// slow down the animation

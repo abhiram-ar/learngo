@@ -85,6 +85,9 @@ func main() {
 	screen.Clear()
 
 	for i := 0; i < maxFrames; i++ {
+
+		board[px][py] = false
+
 		// calculate the next ball position
 		px += vx
 		py += vy
@@ -95,13 +98,6 @@ func main() {
 		}
 		if py <= 0 || py >= height-1 {
 			vy *= -1
-		}
-
-		// remove the previous ball
-		for y := range board[0] {
-			for x := range board {
-				board[x][y] = false
-			}
 		}
 
 		// put the new ball
