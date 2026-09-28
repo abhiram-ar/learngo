@@ -8,6 +8,10 @@
 
 package main
 
+import (
+	"fmt"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Convert the strings
 //
@@ -34,12 +38,24 @@ package main
 func main() {
 	// Please uncomment the code below
 
-	// words := []string{
-	// 	"gopher",
-	// 	"programmer",
-	// 	"go language",
-	// 	"go standard library",
-	// }
+	words := []string{
+		"gopher",
+		"programmer",
+		"go language",
+		"go standard library",
+	}
 
-	// var bwords [][]byte
+	var bwords [][]byte
+	var temp []byte
+
+	for i := range len(words) {
+		temp = []byte(words[i])
+		fmt.Printf("%d\n", temp)
+		bwords = append(bwords, temp)
+	}
+
+	for i := range len(bwords) {
+		fmt.Println(string(bwords[i]))
+	}
+
 }
