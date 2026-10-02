@@ -8,6 +8,7 @@ Go by Example: Programmer's guide to idiomatic and testable code.
 
 ---
 
+
 # A Huge Number of Go Examples, Exercises, and Quizzes
 
 The best way to learn is by doing. Inside this repository, you will find thousands of Go examples, exercises, and quizzes. I initially created this repository for my **[Go: Bootcamp Course](https://www.udemy.com/course/learn-go-the-complete-bootcamp-course-golang/?referralCode=5CE6EB34E2B1EF4A7D37)**. Later, I added a lot of exercises, and I wanted every programmer who is not yet enrolled in the course to learn for free as well. So here it is. Enjoy.
