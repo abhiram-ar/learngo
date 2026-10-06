@@ -8,6 +8,12 @@
 
 package main
 
+import (
+	"fmt"
+	"os"
+	"sort"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Students
 //
@@ -73,4 +79,37 @@ func main() {
 	// slytherin    scorpius
 	// bobo         wizardry
 	// bobo         unwanted
+
+	houseNameOfStudents := map[string][]string{
+		"gryffindor": []string{"weasley", "hagrid", "dumbledore", "lupin"},
+		"hufflepuf":  []string{"wenlock", "scamander", "helga", "diggory"},
+		"ravenclaw":  []string{"flitwick", "bagnold", "wildsmith", "montmorency"},
+		"slytherin":  []string{"horace", "nigellus", "higgs", "scorpius"},
+		"bobo":       []string{"wizardry", "unwanted"},
+	}
+
+	delete(houseNameOfStudents, "bobo")
+
+	args := os.Args[1:]
+
+	if len(args) < 1 {
+		fmt.Println("Please type Hogwarts house name")
+		return
+	}
+
+	query := args[0]
+	students, ok := houseNameOfStudents[query]
+	if !ok {
+		fmt.Println("Sorry I dont know about ", query)
+		return
+	}
+
+	studentsCopy := make([]string, len(students))
+	copy(studentsCopy, students)
+	sort.Strings(studentsCopy)
+
+	fmt.Printf("~~~ %s students ~~~\n", query)
+	for _, student := range students {
+		fmt.Println(student)
+	}
 }
