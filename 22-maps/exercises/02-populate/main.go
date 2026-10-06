@@ -8,6 +8,8 @@
 
 package main
 
+import "fmt"
+
 // ---------------------------------------------------------
 // EXERCISE: Populate and Lookup
 //
@@ -70,4 +72,46 @@ package main
 // ---------------------------------------------------------
 
 func main() {
+	// #1
+	// Key        : Last name
+	// Element    : Phone number
+	var nameToPhone map[string]string
+	nameToPhone = make(map[string]string, 3)
+	fmt.Println("size of nameTotPhone", len(nameToPhone))
+	nameToPhone["bowen"] = "202-555-0179"
+	nameToPhone["dulin"] = "03.37.77.63.06"
+	nameToPhone["greco"] = "03489940240"
+
+	fmt.Printf("%#v\n", nameToPhone)
+
+	// #2
+	// Key        : Product ID
+	// Element    : Available / Unavailable
+	prodcutAvailability := map[string]bool{
+		"617841573": true,
+		"879401371": false,
+		"576872813": true,
+	}
+	fmt.Printf("%#v\n", prodcutAvailability)
+
+	// #3
+	// Key        : Last name
+	// Element    : Phone numbers
+	var phoneNumbers map[string][]string
+	phoneNumbers = make(map[string][]string)
+	phoneNumbers["bowen"] = []string{"202-555-0179"}
+	phoneNumbers["dulin"] = []string{"03.37.77.63.06", "03.37.70.50.05", "02.20.40.10.04"}
+	phoneNumbers["greco"] = []string{"03489940240", "03489900120"}
+	fmt.Printf("%#v\n", phoneNumbers)
+
+	// #4
+	// Key        : Customer ID
+	// Element Key:
+	//   Key: Product ID Element: Quantity
+	var customerBasket = map[string]map[string]int{
+		"100": map[string]int{"617841573": 4, "576872813": 2},
+		"101": map[string]int{"576872813": 5, "657473833": 20},
+		"102": map[string]int{},
+	}
+	fmt.Printf("%#v\n", customerBasket)
 }
