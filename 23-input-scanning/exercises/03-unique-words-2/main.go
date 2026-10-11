@@ -8,6 +8,14 @@
 
 package main
 
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"regexp"
+	"strings"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Unique Words 2
 //
@@ -34,7 +42,33 @@ package main
 
 func main() {
 	// This is the regular expression pattern you need to use:
-	// [^A-Za-z]+
-	//
+	rx := regexp.MustCompile("[^A-Za-z]+")
 	// Matches to any character but upper case and lower case letters
+
+	var (
+		totalWords = 0
+		found      = make(map[string]bool)
+	)
+
+	sc := bufio.NewScanner(os.Stdin)
+	sc.Split(bufio.ScanWords)
+
+	for sc.Scan() {
+		word := sc.Text()
+		word = rx.ReplaceAllString(word, "")
+
+		totalWords++
+
+		if len(word) == 0 {
+			continue
+		}
+
+		found[strings.ToLower(word)] = true
+	}
+
+	if err := sc.Err(); err != nil {
+		fmt.Println(err)
+	}
+
+	fmt.Printf("There are %d words, %d of themn are unique", totalWords, len(found))
 }
