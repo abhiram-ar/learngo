@@ -8,6 +8,12 @@
 
 package main
 
+import (
+	"bufio"
+	"fmt"
+	"os"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Unique Words
 //
@@ -32,4 +38,25 @@ package main
 // ---------------------------------------------------------
 
 func main() {
+	var (
+		totalWords = 0
+		found      = make(map[string]bool)
+	)
+
+	sc := bufio.NewScanner(os.Stdin)
+	sc.Split(bufio.ScanWords)
+
+	for sc.Scan() {
+		word := sc.Text()
+
+		found[word] = true
+		totalWords++
+	}
+
+	if err := sc.Err(); err != nil {
+		fmt.Println(err)
+	}
+
+	fmt.Printf("There are %d words, %d of themn are unique", totalWords, len(found))
+
 }
