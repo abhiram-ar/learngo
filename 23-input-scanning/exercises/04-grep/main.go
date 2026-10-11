@@ -8,6 +8,13 @@
 
 package main
 
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"regexp"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Grep Clone
 //
@@ -34,4 +41,29 @@ package main
 // ---------------------------------------------------------
 
 func main() {
+	args := os.Args[1:]
+	var query string
+	if len(args) > 0 {
+		query = args[0]
+	}
+
+	sc := bufio.NewScanner(os.Stdin)
+
+	for sc.Scan() {
+		line := sc.Text()
+		match, err := regexp.MatchString(query, line)
+
+		if err != nil {
+			fmt.Println("regex error in:", line)
+		}
+
+		if match {
+			fmt.Println("matched:", line)
+		}
+	}
+
+	if err := sc.Err(); err != nil {
+		fmt.Println(err)
+	}
+
 }
