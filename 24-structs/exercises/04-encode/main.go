@@ -10,7 +10,8 @@ package main
 
 import (
 	"bufio"
-	"encoding/json"
+	"encoding/json/jsontext"
+	"encoding/json/v2"
 	"fmt"
 	"os"
 	"strconv"
@@ -168,7 +169,7 @@ mainLoop:
 				gamesToExport = append(gamesToExport, exportedGame{Id: game.id, Name: game.name, Genre: game.genre, Price: game.price})
 			}
 
-			exportedGames, err := json.MarshalIndent(gamesToExport, "", "\t")
+			exportedGames, err := json.Marshal(gamesToExport, jsontext.Multiline(true))
 			if err != nil {
 				fmt.Println("error while converting to json")
 				continue
