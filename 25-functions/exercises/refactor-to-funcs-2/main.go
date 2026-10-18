@@ -60,8 +60,6 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"strconv"
-	"strings"
 )
 
 func main() {
@@ -85,46 +83,16 @@ func main() {
 		}
 
 		// --- runCmd start ---
-		fmt.Println()
-
-		cmd := strings.Fields(in.Text())
-		if len(cmd) == 0 {
+		resume := runCmd(in.Text(), games, byID)
+		if resume {
 			continue
-		}
-
-		switch cmd[0] {
-		case "quit":
-			// cmdQuit()
-			fmt.Println("bye!")
+		} else {
 			return
-
-		case "list":
-			// cmdList()
-			for _, g := range games {
-				printGame(g)
-			}
-
-		case "id":
-			// cmdByID
-			if len(cmd) != 2 {
-				fmt.Println("wrong id")
-				continue
-			}
-
-			id, err := strconv.Atoi(cmd[1])
-			if err != nil {
-				fmt.Println("wrong id")
-				continue
-			}
-
-			g, ok := byID[id]
-			if !ok {
-				fmt.Println("sorry. I don't have the game")
-				continue
-			}
-
-			printGame(g)
 		}
 		// --- runCmd end ---
+	}
+
+	if err := in.Err(); err != nil {
+		fmt.Println(err)
 	}
 }
