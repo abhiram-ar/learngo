@@ -41,7 +41,12 @@ import (
 )
 
 func main() {
-	games := load()
+	games, err := load()
+	if err != nil {
+		fmt.Println("Error loading game")
+		return
+	}
+
 	byID := indexByID(games)
 
 	fmt.Printf("Inanc's game store has %d games.\n", len(games))
@@ -52,6 +57,8 @@ func main() {
   > list   : lists all the games
   > id N   : queries a game by id
   > quit   : quits
+  > save   : json save and quit
+
 
 `)
 
