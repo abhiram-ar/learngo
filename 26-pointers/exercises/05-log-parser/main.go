@@ -27,7 +27,7 @@ func main() {
 	}
 
 	summary(p)
-	handleError(append(p.errs, in.Err()))
+	handleError([]error{p.lastErr, in.Err()})
 
 }
 
