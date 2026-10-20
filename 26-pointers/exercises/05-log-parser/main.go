@@ -22,17 +22,16 @@ func main() {
 	// Scan the standard-in line by line
 	in := bufio.NewScanner(os.Stdin)
 	for in.Scan() {
-		p.lines++
-
-		parsed, err := parse(p, in.Text())
-		if err != nil {
-			fmt.Println(err)
-			return
-		}
-
-		p = update(p, parsed)
+		parsed := parse(&p, in.Text())
+		update(&p, parsed)
 	}
 
+	summary(p)
+	handleError(append(p.errs, in.Err()))
+
+}
+
+func summary(p parser) {
 	// Print the visits per domain
 	sort.Strings(p.domains)
 
@@ -46,9 +45,13 @@ func main() {
 
 	// Print the total visits for all domains
 	fmt.Printf("\n%-30s %10d\n", "TOTAL", p.total)
+}
 
-	// Let's handle the error
-	if err := in.Err(); err != nil {
-		fmt.Println("> Err:", err)
+func handleError(errs []error) {
+
+	for _, err := range errs {
+		if err != nil {
+			fmt.Println(err)
+		}
 	}
 }

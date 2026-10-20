@@ -27,6 +27,7 @@ type parser struct {
 	domains []string          // unique domain names
 	total   int               // total visits for all domains
 	lines   int               // number of parsed lines (for the error messages)
+	errs    []error
 }
 
 // newParser constructs, initializes and returns a new parser
@@ -35,10 +36,14 @@ func newParser() parser {
 }
 
 // parse parses a log line and returns the parsed result with an error
-func parse(p parser, line string) (parsed result, err error) {
+func parse(p *parser, line string) (parsed result) {
+	p.lines++
+	var err error
+
 	fields := strings.Fields(line)
 	if len(fields) != 2 {
 		err = fmt.Errorf("wrong input: %v (line #%d)", fields, p.lines)
+		p.errs = append(p.errs, err)
 		return
 	}
 
@@ -47,6 +52,7 @@ func parse(p parser, line string) (parsed result, err error) {
 	parsed.visits, err = strconv.Atoi(fields[1])
 	if parsed.visits < 0 || err != nil {
 		err = fmt.Errorf("wrong input: %q (line #%d)", fields[1], p.lines)
+		p.errs = append(p.errs, err)
 		return
 	}
 
@@ -54,7 +60,12 @@ func parse(p parser, line string) (parsed result, err error) {
 }
 
 // update updates the parser for the given parsing result
-func update(p parser, parsed result) parser {
+func update(p *parser, parsed result) {
+
+	if len(p.errs) != 0 {
+		return
+	}
+
 	domain, visits := parsed.domain, parsed.visits
 
 	// Collect the unique domains
@@ -70,6 +81,4 @@ func update(p parser, parsed result) parser {
 		domain: domain,
 		visits: visits + p.sum[domain].visits,
 	}
-
-	return p
 }
