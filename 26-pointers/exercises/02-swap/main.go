@@ -42,5 +42,34 @@
 
 package main
 
+import "fmt"
+
 func main() {
+	a := 3.141
+	b := 1.414
+
+	swapValueViaAddress(&a, &b)
+	fmt.Println("a =", a)
+	fmt.Println("b =", b)
+
+	// ----------------------
+
+	var (
+		fa = &a
+		fb = &b
+	)
+	fa, fb = swapAddress(fa, fb)
+	fmt.Printf("fa addr=%p  value=%f\n", fa, *fa)
+	fmt.Printf("fb addr=%p  value=%f\n", fb, *fb)
+
+}
+
+func swapValueViaAddress(a, b *float64) {
+	temp := *a
+	*a = *b
+	*b = temp
+}
+
+func swapAddress(a, b *float64) (*float64, *float64) {
+	return b, a
 }
